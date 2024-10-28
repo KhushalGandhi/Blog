@@ -39,3 +39,13 @@ func LoginUser(email, password string) (string, error) {
 
 	return token, nil
 }
+
+func UpdateUser(userID uint, updatedData models.User) error {
+	var user models.User
+	if err := database.DB.First(&user, userID).Error; err != nil {
+		return errors.New("user not found")
+	}
+
+	updatedData.Password = user.Password // Keep original password
+	return database.DB.Model(&user).Updates(updatedData).Error
+}
