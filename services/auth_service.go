@@ -47,7 +47,12 @@ func UpdateUser(userID uint, updatedData models.UpdateProfile) error {
 		return errors.New("user not found")
 	}
 
-	return database.DB.Model(&user).Updates(updatedData).Error
+	updateData := map[string]interface{}{
+		"username": updatedData.UserName,
+		"email":    updatedData.Email,
+	}
+
+	return database.DB.Model(&user).Updates(updateData).Error
 }
 
 func ViewProfile(userID uint) (*models.UserProfile, error) {

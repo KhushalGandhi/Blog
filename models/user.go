@@ -6,7 +6,7 @@ import (
 
 type User struct {
 	gorm.Model
-	Username string `gorm:"user_name;unique;not null" json:"user_name"`
+	Username string `gorm:"username;unique;not null" json:"username"`
 	Email    string `gorm:"unique;not null" json:"email"`
 	Password string `gorm:"not null" json:"password"`
 }
@@ -23,7 +23,7 @@ type UserRequest struct {
 }
 
 type UpdateProfile struct {
-	UserName string `json:"user_name"`
+	UserName string `json:"username"`
 	Email    string `json:"email"`
 }
 
