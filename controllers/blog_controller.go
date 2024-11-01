@@ -59,7 +59,7 @@ func UpdatePost(c *fiber.Ctx) error {
 		return utils.ErrorResponse(c, fiber.StatusBadRequest, "Invalid post ID")
 	}
 
-	var updatedPost models.Post
+	var updatedPost models.CreatePost
 	if err := c.BodyParser(&updatedPost); err != nil {
 		return utils.ErrorResponse(c, fiber.StatusBadRequest, "Invalid input")
 	}

@@ -25,7 +25,7 @@ func GetAllPosts() ([]models.Post, error) {
 	return posts, nil
 }
 
-func UpdatePost(userID uint, postID int, updatedPost models.Post) error {
+func UpdatePost(userID uint, postID int, updatedPost models.CreatePost) error {
 	var post models.Post
 	if err := database.DB.First(&post, postID).Error; err != nil {
 		return errors.New("post not found")
