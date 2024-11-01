@@ -14,7 +14,7 @@ func RegisterUser(user *models.User) error {
 	}
 	user.Password = hashedPassword
 
-	return database.DB.Create(user).Error
+	return database.DB.Create(user).Error // we can take it to db section too like service repo db section
 }
 
 func LoginUser(email, password string) (string, error) {
@@ -40,12 +40,28 @@ func LoginUser(email, password string) (string, error) {
 	return token, nil
 }
 
-func UpdateUser(userID uint, updatedData models.User) error {
+func UpdateUser(userID uint, updatedData models.UpdateProfile) error {
 	var user models.User
+
 	if err := database.DB.First(&user, userID).Error; err != nil {
 		return errors.New("user not found")
 	}
 
-	updatedData.Password = user.Password // Keep original password
 	return database.DB.Model(&user).Updates(updatedData).Error
+}
+
+func ViewProfile(userID uint) (*models.UserProfile, error) {
+	var user models.User
+	var profile models.UserProfile
+
+	// Find the user by ID
+	if err := database.DB.First(&user, userID).Error; err != nil {
+		return nil, errors.New("user not found")
+	}
+
+	// Map user data to profile struct
+	profile.UserName = user.Username
+	profile.Email = user.Email
+
+	return &profile, nil
 }
