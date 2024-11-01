@@ -14,11 +14,11 @@ func Setup(app *fiber.App) {
 	app.Put("/profile", middlewares.ProtectedRoute, controllers.UpdateProfile)
 	app.Get("/profile", middlewares.ProtectedRoute, controllers.ViewProfile) // done
 	// Blog post routes
-	app.Post("/posts", middlewares.ProtectedRoute, controllers.CreatePost) // done
-	app.Get("/posts", controllers.GetAllPosts)                             // done
-	app.Get("/posts/:id", controllers.GetPost)                             // done
-	app.Put("/posts/:id", middlewares.ProtectedRoute, controllers.UpdatePost)
-	app.Delete("/posts/:id", middlewares.ProtectedRoute, controllers.DeletePost)
+	app.Post("/posts", middlewares.ProtectedRoute, controllers.CreatePost)       // done
+	app.Get("/posts", controllers.GetAllPosts)                                   // done
+	app.Get("/posts/:id", controllers.GetPost)                                   // done
+	app.Put("/posts/:id", middlewares.ProtectedRoute, controllers.UpdatePost)    // done
+	app.Delete("/posts/:id", middlewares.ProtectedRoute, controllers.DeletePost) // done
 	//app.Get("/posts", controllers.GetAllPosts)
 
 }
