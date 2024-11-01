@@ -12,12 +12,12 @@ type User struct {
 }
 
 type UserResponse struct {
-	UserName string `json:"user_name"`
+	UserName string `json:"username"`
 	Email    string `json:"email"`
 }
 
 type UserRequest struct {
-	UserName string `json:"user_name"`
+	UserName string `json:"username"`
 	Email    string `json:"email"`
 	Password string `json:"password"`
 }
@@ -28,6 +28,6 @@ type UpdateProfile struct {
 }
 
 type UserProfile struct {
-	UserName string `json:"user_name"`
+	UserName string `json:"username"`
 	Email    string `json:"email"`
 }
