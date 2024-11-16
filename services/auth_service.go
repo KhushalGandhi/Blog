@@ -12,6 +12,12 @@ func RegisterUser(user *models.User) error {
 	if err != nil {
 		return err
 	}
+
+	err = database.DB.Where("email = ?", user.Email).First(&user).Error
+	if err == nil {
+		return errors.New("email already present")
+	}
+
 	user.Password = hashedPassword
 
 	return database.DB.Create(user).Error // we can take it to db section too like service repo db section
